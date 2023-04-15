@@ -1,7 +1,7 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-    publicPath: "/vue-small-spa/",
-    transpileDependencies: [
-        'vuetify'
-    ],
+    publicPath: process.env.NODE_ENV === 'production'
+        ? '/vue-small-spa/'
+        : '/',
+    transpileDependencies: ['vuetify']
 })
