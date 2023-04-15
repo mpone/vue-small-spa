@@ -1,51 +1,33 @@
 <template>
     <v-dialog
-        v-model="dialogVisible"
+        :value="dialogVisible"
         max-width="600"
+        @click:outside="closeDialog"
     >
         <v-card>
             <v-card-title>{{ full_title }}</v-card-title>
             <v-card-text>
-                <v-img
-                    :src="photo.url"
-                />
+                <v-img :src="currentPhoto.url" />
             </v-card-text>
         </v-card>
     </v-dialog>
 </template>
 
 <script>
+import { mapGetters } from "vuex"
+
 export default {
     name: "PhotoDialog",
-    props: {
-        photo: {
-            type: Object,
-            required: true
-        },
-        value: {
-            type: Boolean,
-            default: false
-        }
-    },
-    data: () => ({
-        dialogVisible: false
-    }),
     computed: {
+        ...mapGetters(["dialogVisible", "currentPhoto"]),
         full_title() {
-            return `Photo name - ${this.photo.title}`
+            return `Photo name - ${this.currentPhoto.title}`
         }
     },
-    watch: {
-        value(newVal) {
-            this.dialogVisible = newVal
-        },
-        dialogVisible(newVal) {
-            this.$emit("input", newVal)
+    methods: {
+        closeDialog() {
+            this.$store.commit("HANDLE_DIALOG", false)
         }
-    },
-    created() {
-        this.dialogVisible = this.value
-    },
+    }
 }
 </script>
-

@@ -6,11 +6,11 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: "/",
-    component: () => import("/src/pages/MainPage.vue")
+    component: () => import("/src/views/MainPage.vue")
   },
   {
     path: "/photo",
-    component: () => import("/src/pages/PhotoPage.vue")
+    component: () => import("/src/views/PhotosPage.vue")
   }
 ]
 
