@@ -40,6 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 .photos-page {
+    margin-top: 70px;
     background: #7CB9E8;
 }
 </style>
