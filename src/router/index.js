@@ -3,6 +3,8 @@ import VueRouter from "vue-router"
 
 Vue.use(VueRouter)
 
+const base = "/vue-small-spa/"
+
 const routes = [
   {
     path: "/",
@@ -15,8 +17,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: "/vue-small-spa/",
+  mode: process.env.NODE_ENV === 'production' ? 'hash' : 'history',
+  base,
   routes
 })
 
