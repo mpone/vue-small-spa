@@ -1,24 +1,25 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
+import MainPage from "@/views/MainPage.vue"
 
 Vue.use(VueRouter)
-
-const base = "/vue-small-spa/"
 
 const routes = [
   {
     path: "/",
-    component: () => import("/src/views/MainPage.vue")
+    name: "Home",
+    component: MainPage
   },
   {
-    path: "/photo",
-    component: () => import("/src/views/PhotosPage.vue")
+    path: "/photos",
+    name: "Photos",
+    component: () => import(/* webpackChunkName: "Photos" */ "../views/PhotosPage.vue")
   }
 ]
 
 const router = new VueRouter({
-  mode: process.env.NODE_ENV === 'production' ? 'hash' : 'history',
-  base,
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes
 })
 
